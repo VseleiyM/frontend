@@ -1,0 +1,22 @@
+  .pagination .page-link {
+    user-select: none;
+  }
+  .hidden {
+    display: none;
+  }
+  #pageList {
+    max-height: 150px; 
+    overflow-y: auto; 
+    position: absolute; 
+    z-index: 1; 
+    background-color: #fff; 
+    list-style-type: none; 
+    padding-left: 0; 
+  }
+  
+  .page-item {
+    cursor: pointer; 
+  }
+  .d-none {
+    display: none !important;
+  }

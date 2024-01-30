@@ -1,0 +1,65 @@
+<div class="row">
+    <!-- Оставляем один экземпляр разметки компонента -->
+    <div class="col-sm-6 mb-3 mb-sm-0">
+        <div class="card">
+            <!-- код заголовка карточки -->
+            <div class="card-header bg-primary-subtle">
+              <h3 class="card-title">Установка периода</h3>
+              <p class="card-text"></p>
+            </div>
+            <div class="card-body">
+                <!-- код стандартного периода -->
+                <div class="row mb-3">
+                  <h5>Стандартный период</h5>
+                  <div class="col-6">
+                    <label for="standard-year" class="form-label">Год:</label>
+                    <input type="number" id="standard-year" class="form-control" placeholder="Год" min="1900" max="2099" step="1">
+                  </div>
+                  <div class="col-6">
+                    <label for="standard-period" class="form-label">Период/Месяц:</label>
+                    <select id="standard-period" class="form-select">
+                      <option value="">Выберите период</option>
+                      <option value="full-year">Год</option>
+                      <option value="first-half">Первое полугодие</option>
+                      <option value="second-half">Второе полугодие</option>
+                      <option value="first-quarter">Первый квартал</option>
+                      <option value="second-quarter">Второй квартал</option>
+                      <option value="third-quarter">Третий квартал</option>
+                      <option value="fourth-quarter">Четвёртый квартал</option>
+                      <option value="nine-months">Девять месяцев</option>
+                      <option value="01">Январь</option>
+                      <option value="02">Февраль</option>
+                      <option value="03">Март</option>
+                      <option value="04">Апрель</option>
+                      <option value="05">Май</option>
+                      <option value="06">Июнь</option>
+                      <option value="07">Июль</option>
+                      <option value="08">Август</option>
+                      <option value="09">Сентябрь</option>
+                      <option value="10">Октябрь</option>
+                      <option value="11">Ноябрь</option>
+                      <option value="12">Декабрь</option>
+                    </select>
+                  </div>
+              </div>
+                <div class="row mb-3">
+                    <!-- код произвольного периода, добавляем классы для инициализации плагинов -->
+                    <h5>Произвольный период</h5>
+                    <div class="col-6">
+                      <label for="custom-start-date" class="form-label">Начало периода:</label>
+                      <input type="text" id="custom-start-date" class="form-control" placeholder="ДД.ММ.ГГГГ">
+                    </div>
+                    <div class="col-6">
+                      <label for="custom-end-date" class="form-label">Конец периода:</label>
+                      <input type="text" id="custom-end-date" class="form-control" placeholder="ДД.ММ.ГГГГ">
+                    </div>
+                </div>
+                <!-- код кнопок Ок и Отмена -->
+                <div class="mb-3">
+                  <button id="btn-ok" class="btn btn-outline-secondary">Ок</button>
+                  <button id="btn-cancel" class="btn btn-outline-secondary">Отмена</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

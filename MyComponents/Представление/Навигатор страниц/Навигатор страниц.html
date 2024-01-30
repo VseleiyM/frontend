@@ -1,0 +1,22 @@
+<nav aria-label="Навигация по страницам">
+    <ul class="pagination">
+      <li class="page-item" onclick="goToPage('first')">
+        <span class="page-link text-primary-emphasis">&laquo;&laquo;</span>
+      </li>
+      <li class="page-item" onclick="changePage(-1)">
+        <span class="page-link text-primary-emphasis">&laquo;</span>
+      </li>
+      <li class="page-item active border-0" onclick="togglePageList()">
+        <span class="page-link bg-primary-subtle text-primary-emphasis border" id="currentPage">1</span>
+        <ul class="hidden text-emphasis-primary" id="pageList">
+          <!-- Список страниц будет динамически добавлен здесь -->
+        </ul>
+    </li>
+      <li class="page-item" onclick="changePage(1)">
+        <span class="page-link text-primary-emphasis">&raquo;</span>
+      </li>
+      <li class="page-item" onclick="goToPage('last')">
+        <span class="page-link text-primary-emphasis">&raquo;&raquo;</span>
+      </li>
+    </ul>
+  </nav>
