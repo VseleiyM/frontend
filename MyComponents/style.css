@@ -20,3 +20,11 @@
   .d-none {
     display: none !important;
   }
+  .date-navigator {
+    display: flex;
+    align-items: center;
+  }
+
+  .date-input {
+    max-width: 150px;
+  }
