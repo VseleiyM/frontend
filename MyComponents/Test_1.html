@@ -16,44 +16,83 @@
     <body>
       
       <div class="container-fluid">
-        <div class="container mt-3">
-          <div class="card">
-              <div class="card-body">
-                  <h5 class="card-title">Навигатор даты</h5>
-                  <div class="row g-2">
-                      <div class="col-md-6">
-                          <div class="input-group">
-                              <input type="date" class="form-control" id="fromDate" placeholder="Дата начала" aria-label="Дата начала">
-                              <button class="btn btn-secondary" id="btnPrevFromDate">&larr;</button>
-                              <button class="btn btn-secondary" id="btnNextFromDate">&rarr;</button>
-                          </div>
-                      </div>
-                      <div class="col-md-6">
-                          <div class="input-group">
-                              <input type="date" class="form-control" id="toDate" placeholder="Дата конца" aria-label="Дата конца">
-                              <button class="btn btn-secondary" id="btnPrevToDate">&larr;</button>
-                              <button class="btn btn-secondary" id="btnNextToDate">&rarr;</button>
-                          </div>
-                      </div>
-  
-                      <div class="col-6">
-                          <select class="form-select" id="dateChangeTypeFromDate">
-                              <option value="day">День</option>
-                              <option value="month">Месяц</option>
-                              <option value="year">Год</option>
-                          </select>
-                      </div>
-                      <div class="col-6">
-                          <select class="form-select" id="dateChangeTypeToDate">
-                              <option value="day">День</option>
-                              <option value="month">Месяц</option>
-                              <option value="year">Год</option>
-                          </select>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
+        <div class="container mt-3 date-navigator">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Навигатор даты 1</h5>
+                    <div class="row g-2">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <input type="date" class="form-control from-date" placeholder="Дата начала" aria-label="Дата начала">
+                                <button class="btn btn-secondary btn-prev-from">&larr;</button>
+                                <button class="btn btn-secondary btn-next-from">&rarr;</button>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <input type="date" class="form-control to-date" placeholder="Дата конца" aria-label="Дата конца">
+                                <button class="btn btn-secondary btn-prev-to">&larr;</button>
+                                <button class="btn btn-secondary btn-next-to">&rarr;</button>
+                            </div>
+                        </div>
+        
+                        <div class="col-6">
+                            <select class="form-select date-change-type-from">
+                                <option value="day">День</option>
+                                <option value="month">Месяц</option>
+                                <option value="year">Год</option>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <select class="form-select date-change-type-to">
+                                <option value="day">День</option>
+                                <option value="month">Месяц</option>
+                                <option value="year">Год</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container mt-3 date-navigator">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Навигатор даты 2</h5>
+                    <div class="row g-2">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <input type="date" class="form-control from-date" placeholder="Дата начала" aria-label="Дата начала">
+                                <button class="btn btn-secondary btn-prev-from">&larr;</button>
+                                <button class="btn btn-secondary btn-next-from">&rarr;</button>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <input type="date" class="form-control to-date" placeholder="Дата конца" aria-label="Дата конца">
+                                <button class="btn btn-secondary btn-prev-to">&larr;</button>
+                                <button class="btn btn-secondary btn-next-to">&rarr;</button>
+                            </div>
+                        </div>
+        
+                        <div class="col-6">
+                            <select class="form-select date-change-type-from">
+                                <option value="day">День</option>
+                                <option value="month">Месяц</option>
+                                <option value="year">Год</option>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <select class="form-select date-change-type-to">
+                                <option value="day">День</option>
+                                <option value="month">Месяц</option>
+                                <option value="year">Год</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
       
       </div>
 

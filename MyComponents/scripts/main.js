@@ -1,3 +1,5 @@
+
+//Логика компонента №1
 document.querySelectorAll('th').forEach(function(th) {
   // Функция сброса всех стрелок, кроме текущего выбранного столбца
   function resetArrows(current) {
@@ -27,7 +29,7 @@ document.querySelectorAll('th').forEach(function(th) {
             
             
             
-            
+//Логика компонента №2
             function toggleTheme() {
                 var theme = document.documentElement.getAttribute('data-bs-theme');
                 if (theme === 'dark') {
@@ -39,86 +41,47 @@ document.querySelectorAll('th').forEach(function(th) {
 
             
 
-            $(document).ready(function(){
-                // Инициализация Inputmask для произвольного периода с немедленным форматированием
-                $("#custom-start-date, #custom-end-date").inputmask("dd.mm.yyyy", {
-                    "placeholder": "дд.мм.гггг",
-                    insertMode: false,
-                    showMaskOnHover: false,
-                    clearIncomplete: true,
-                    greedy: false, // Добавить эту опцию
-                    definitions: {
-                        'd': {
-                            validator: "[0-9]",
-                            cardinality: 1,
-                            prevalidator: null
-                        },
-                        'm': {
-                            validator: "[0-9]",
-                            cardinality: 1,
-                            prevalidator: null
-                        },
-                        'y': {
-                            validator: "[0-9]",
-                            cardinality: 1,
-                            prevalidator: null
-                        }
-                    },
-                    onKeyPress: function (value, event, currentField, options) {
-                        // Автоматическое добавление точек при вводе
-                        var matches = value.match(/(\d{2})(\d{2})?(\d{4})?/);
-                        if (matches) {
-                            if(matches[2]) {
-                                var day_month = matches[1] + '.' + matches[2];
-                                if(matches[3]) {
-                                    day_month += '.' + matches[3].substr(0,2);
-                                }
-                                currentField.val(day_month);
-                            }
-                            if(matches[2] && matches[3] && matches[3].length == 2) {
-                                // Добавляем последние две цифры года и обновляем поле сразу
-                                var dateWithYear = value + matches[3].substr(2,2);
-                                currentField.val(dateWithYear);
-                            }
-                        }
-                    }
-                });
-
-              // Иконка календаря для открытия datepicker
-              $('.bi-calendar3').click(function() {
-                $('#datepicker').datepicker('show');
+//Логика компонента №3
+            $(document).ready(function() {
+              // Инициализация всех компонентов DatePicker
+              $('.custom-start-date, .custom-end-date').datepicker({
+                  format: 'dd.mm.yyyy',
+                  language: 'ru',
+                  autoclose: true,
+                  todayHighlight: true
               });
-            });
-            $(document).ready(function(){
-            // Инициализация datepicker для произвольного периода
-            $('#custom-start-date, #custom-end-date').datepicker({
-              format: 'dd.mm.yyyy',
-              language: 'ru',
-              autoclose: true,
-              todayHighlight: true
-            });
 
-            // События изменения в стандартном периоде
-            $('#standard-year').on('input', function() {
-              var year = $(this).val();
-              if (year.length == 4) {
-                updateCustomPeriodDates(year, $('#standard-period').val());
-              }
-            });
-
-            $('#standard-period').change(function() {
-              var year = $('#standard-year').val();
-              var period = $(this).val();
-              updateCustomPeriodDates(year, period);
-            });
-
-            // Функция обновляет даты в произвольном периоде
-            function updateCustomPeriodDates(year, period) {
-                var startDate, endDate;
-              
-                if (year) {
-                    switch (period) {
-                        case "full-year":
+              $('.period-setting-component').each(function() {
+                var $component = $(this);
+          
+              // Логика кнопок "Ок" и "Отмена" для всех карточек
+              $('.period-setting-component').on('click', '.btn-ok', function() {
+                  // Ваша логика для кнопки "Ок"
+              });
+          
+              $('.period-setting-component').on('click', '.btn-cancel', function() {
+                  // Ваша логика для кнопки "Отмена"
+              });
+          
+              // Обработчик изменения значения стандартного периода для каждой карточки
+              $component.on('input change', '#standard-year, #standard-period', function() {
+              var year = $component.find('#standard-year').val();
+              var period = $component.find('#standard-period').val();
+              updateCustomPeriodDates(year, period, $component);
+                });
+              });
+          
+              function updateCustomPeriodDates(year, period) {
+                  var startDate, endDate;
+          
+                  // далее идет логика определения startDate и endDate
+                  if (year) {
+                      switch (period) {
+                          // ... все case как в оригинальном скрипте
+                          // ... 
+                          // Убедитесь, что этот код включает все сценарии для period,
+                          // включая полугодия, кварталы, месяцы и т.д.
+                          case "full-year":
                             startDate = `01.01.${year}`;
                             endDate = `31.12.${year}`;
                             break;
@@ -150,39 +113,31 @@ document.querySelectorAll('th').forEach(function(th) {
                             startDate = `01.01.${year}`;
                             endDate = `30.09.${year}`;
                             break;
-                        default:
-                            // Если период - это месяц (01-12)
-                            if (!isNaN(period) && period >=1 && period <=12) {
-                                var paddedPeriod = period.padStart(2, '0');
-                                startDate = `01.${paddedPeriod}.${year}`;
-                                // Определение последнего дня месяца
-                                var endDay = new Date(year, period, 0).getDate();
-                                endDate = `${endDay < 10 ? '0' + endDay : endDay}.${paddedPeriod}.${year}`;
-                            }
-                            break;
-                    }
-                
-                    // Обновление datepicker с новыми значениями
-                    if (startDate && endDate) {
-                        $('#custom-start-date').datepicker('update', startDate);
-                        $('#custom-end-date').datepicker('update', endDate);
-                    }
-                }
-            }
-            
-
-            // Обработчики кнопок "Ок" и "Отмена"
-            $('#btn-ok').click(function() {
-              // Ваша логика для кнопки "Ок"
-            });
-
-            $('#btn-cancel').click(function() {
-              // Ваша логика для кнопки "Отмена"
-            });
+                          default:
+                              // Если период - это месяц (01-12)
+                              if (!isNaN(period) && period >= 1 && period <= 12) {
+                                  var paddedPeriod = period.padStart(2, '0');
+                                  startDate = `01.${paddedPeriod}.${year}`;
+                                  // Определение последнего дня месяца
+                                  var endDay = new Date(year, period, 0).getDate();
+                                  endDate = `${endDay < 10 ? '0' + endDay : endDay}.${paddedPeriod}.${year}`;
+                              }
+                              break;
+                      }
+          
+                      // Обновление DatePicker со значениями startDate и endDate
+                      if (startDate && endDate) {
+                          $('.custom-start-date').datepicker('update', startDate);
+                          $('.custom-end-date').datepicker('update', endDate);
+                      }
+                  }
+              }
           });
 
+            
 
 
+//Логика компонента №4
             const totalPages = 23; // Предположим, что у нас всего 6 страниц
 
   function togglePageList() {
@@ -232,9 +187,31 @@ function goToPage(position) {
   document.getElementById('pageList').classList.add('hidden');
 }
 
+
+//Логика компонента №5
 //выбор периода облегченный 
-function adjustDate(inputId, step, changeType) {
-  let input = document.getElementById(inputId);
+document.querySelectorAll('.date-navigator').forEach(function(navigator) {
+  let fromDateInput = navigator.querySelector('.from-date');
+  let toDateInput = navigator.querySelector('.to-date');
+  
+  navigator.querySelector('.btn-prev-from').addEventListener('click', function() {
+      adjustDate(fromDateInput, -1, navigator.querySelector('.date-change-type-from').value);
+  });
+
+  navigator.querySelector('.btn-next-from').addEventListener('click', function() {
+      adjustDate(fromDateInput, 1, navigator.querySelector('.date-change-type-from').value);
+  });
+
+  navigator.querySelector('.btn-prev-to').addEventListener('click', function() {
+      adjustDate(toDateInput, -1, navigator.querySelector('.date-change-type-to').value);
+  });
+
+  navigator.querySelector('.btn-next-to').addEventListener('click', function() {
+      adjustDate(toDateInput, 1, navigator.querySelector('.date-change-type-to').value);
+  });
+});
+
+function adjustDate(input, step, changeType) {
   let currentDate = input.value ? new Date(input.value) : new Date();
 
   switch (changeType) {
@@ -251,25 +228,5 @@ function adjustDate(inputId, step, changeType) {
           break;
   }
 
-  input.value = currentDate.toISOString().substring(0, 10); // форматируем дату обратно в формат YYYY-MM-DD
+  input.value = currentDate.toISOString().substring(0, 10);
 }
-
-document.getElementById('btnPrevFromDate').addEventListener('click', function() {
-  let changeType = document.getElementById('dateChangeTypeFromDate').value;
-  adjustDate('fromDate', -1, changeType);
-});
-
-document.getElementById('btnNextFromDate').addEventListener('click', function() {
-  let changeType = document.getElementById('dateChangeTypeFromDate').value;
-  adjustDate('fromDate', 1, changeType);
-});
-
-document.getElementById('btnPrevToDate').addEventListener('click', function() {
-  let changeType = document.getElementById('dateChangeTypeToDate').value;
-  adjustDate('toDate', -1, changeType);
-});
-
-document.getElementById('btnNextToDate').addEventListener('click', function() {
-  let changeType = document.getElementById('dateChangeTypeToDate').value;
-  adjustDate('toDate', 1, changeType);
-});
